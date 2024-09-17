@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+</head>
+<div id="root">
+    <h1>hello{{name}}</h1>
+    <a v-bind:href="url">标签</a>
+    <input type="text" v-model:value="gooogleName"  placeholder="请输入你的名字">
+    <h2>{{gooogleName}}</h2>
+
+</div>
+<body>
+
+<script type="text/javascript">
+    Vue.config.silent = true
+    var vue = new Vue({
+        el:'#root',
+        data(){
+            return {
+                name : "张三",
+                url : "https:wwww.baidu.com",
+                gooogleName: "you are so handsome"
+            }
+        }
+    });
+    
+
+</script>
+
+
+<div id="root">
+  <h1>hello zard</h1>
+</div>
+
+</body>
+</html>
