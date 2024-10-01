@@ -4,12 +4,74 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" src="../../js/vue.min.js"></script>
+    <style>
+        *{
+            margin-top: 20px;
+        }
+        .demo1{
+            height: 50px;
+            background-color: aqua;
+        }
+        .demo2{
+            height: 50px;
+            background-color: red;
+        }
+        .box1{
+            padding: 5px;
+            background-color: aqua;
+        }
+        .box2{
+            padding: 5px;
+            background-color: red;
+        }
+        .list{
+            width: 200px;
+            height: 200px;
+            background-color: burlywood;
+            overflow: auto;
+        }
+        li{
+            height: 100px;
+        }
+    </style>
 </head>
 <body>
     <div id="root">
         <h2>欢迎来到{{name}}学习</h2>
-        <button v-on:click="showInfo">点我提示信息</button>
-        <button @click="showInfo($event,66)">点我提示信息</button>
+        <div class ="demo1" @click="showInfo">
+            <!--阻止事件的默认行为-->
+            <button @click.stop="showInfo">点我提示信息</button>
+        </div>
+
+        <button @click.once="showInfo">点我提示一次信息</button>
+
+            <!--捕获事件就触发默认是冒泡事件默认是是2，1 捕获后是1，2-->
+        <div class ="box1" @click.capture="showMessage(1)">
+            <div class ="box2" @click="showMessage(2)">
+            </div>
+        </div>
+
+        <div class ="demo2" @click.self="showInfo">
+            <!--阻止事件的默认行为-->
+            <button @click="showInfo">点我自己信息</button>
+        </div>
+
+        <ul @scroll="demo3" class="list">
+            <!--滚动条的触发-->
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+
+        <ul @wheel.passive="demo3" class="list">
+            <!--鼠标滚轮的触发-->
+            <!--passive 是先滚动再调用方法-->
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
 
     </div>
 
@@ -20,11 +82,18 @@
             name:"这里"
         },
         methods:{
-            showInfo(event,id){
-                console.log(id);
-                console.log(event);
-                console.log(event.target.innerText)
+            showInfo(){
                 alert("同学你好")
+            },
+            showMessage(msg){
+                console.log(msg);
+            }
+            ,
+            demo3(){
+                for (let i = 0; i < 10000; i++) {
+                    console.log('#')
+                }
+                console.log("累坏了")
             }
         }
 
