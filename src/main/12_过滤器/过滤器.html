@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-model="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+    <script type="text/javascript" src="../../js/day.min.js"></script>
+
+    <style>
+        .basic {
+            padding: 5px;
+            background-color: red;
+        }
+
+        .normal {
+            padding: 10px;
+            background-color: burlywood;
+        }
+
+        .happy {
+            padding: 5px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <h2>显示格式化的属性</h2>
+    <h3>{{formatTime()}}</h3>
+    <h3>{{createAt | timeFormater}}</h3>
+</div>
+
+
+<div id="root2">
+    <h2>显示格式化的属性</h2>
+    <h3>{{formatTime()}}</h3>
+    <h3>{{createAt | timeFormater}}</h3>
+</div>
+
+<script type="text/javascript">
+    // 全局过滤器
+    Vue.filter('timeFormater',function (val){
+        return dayjs(val).format("YYYY-MM-DD HH:mm:ss")
+    })
+
+    var vm = new Vue({
+        el: '#root',
+        data: {
+            createAt: 1621561377603
+        },
+        methods: {
+            formatTime() {
+                console.log("被调用了")
+                return dayjs(this.createAt).format("YYYY-MM-DD HH:mm:ss")
+            }
+        },
+        filters: {
+            timeFormater(val) {
+                console.log(val)
+                return dayjs(val).format("YYYY-MM-DD HH:mm:ss")
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el: '#root2',
+        data: {
+            createAt: 1621561377603
+        },
+        methods: {
+            formatTime() {
+                console.log("被调用了")
+                return dayjs(this.createAt).format("YYYY-MM-DD HH:mm:ss")
+            }
+        }
+    });
+
+
+</script>
+
+</body>
+</html>
