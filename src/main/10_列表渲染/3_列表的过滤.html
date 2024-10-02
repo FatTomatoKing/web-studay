@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-model="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+    <style>
+        .basic {
+            padding: 5px;
+            background-color: red;
+        }
+
+        .normal {
+            padding: 10px;
+            background-color: burlywood;
+        }
+
+        .happy {
+            padding: 5px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <h2>人员列表</h2>
+    <input type="text" placeholder="请输入名字" v-model:value="keyWords">
+    <ul>
+        <li v-for="person in filterPersons" :key="person.id">
+            {{person.name}}-{{person.age}}
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#root',
+        data: {
+            keyWords: "",
+            persons: [
+                {
+                    id: '1',
+                    name: '张三',
+                    age: '14'
+                },
+                {
+                    id: '2',
+                    name: '李四',
+                    age: '14'
+                },
+                {
+                    id: '3',
+                    name: '王五',
+                    age: '24'
+                }
+            ],
+            filterPersons: []
+        },
+        methods: {
+            changeMood() {
+                this.mode = 'happy'
+            },
+            add() {
+                const p = {id: '004', name: '老刘', age: 14}
+                this.persons.unshift(p)
+            },
+        },
+        watch: {
+            keyWords: {
+                immediate: true,
+                handler(newValue) {
+                    this.filterPersons = this.persons.filter((p) => {
+                        return p.name.indexOf(newValue) !== -1
+                    })
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
