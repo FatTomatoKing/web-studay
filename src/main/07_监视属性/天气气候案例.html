@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+
+</head>
+<body>
+<div id="root">
+    <h2>今天天气{{info}}</h2>
+    <button @click='changeWeather'>切换天气</button><br>
+    <button @click="isHot = !isHot">切换天气2</button>
+</div>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            isHot: true
+        },
+        computed: {
+            info: function () {
+                return this.isHot ? '炎热' : '寒冷'
+            }
+        },
+        methods:{
+            changeWeather(){
+                this.isHot = !this.isHot
+            }
+        }
+
+    })
+    console.log(vm)
+</script>
+
+</body>
+</html>

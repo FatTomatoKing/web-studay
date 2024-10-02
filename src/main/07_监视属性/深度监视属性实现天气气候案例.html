@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+
+</head>
+<body>
+<div id="root">
+    <h2>今天天气{{info}}</h2>
+    <button @click='changeWeather'>切换天气</button>
+    <br>
+    <h3>
+        a 的值是：{{numbers.a}}
+    </h3>
+    <button @click='numbers.a++'>点我a的值就会发生变化</button>
+</div>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#root",
+        data: {
+            isHot: true,
+            numbers: {
+                a: 1,
+                b: 1
+            }
+        },
+        computed: {
+            info: function () {
+                return this.isHot ? '炎热' : '寒冷'
+            }
+        },
+        methods: {
+            changeWeather() {
+                this.isHot = !this.isHot
+            }
+        },
+        watch: {
+            isHot: {
+                // 初始化时候的默认调用
+                immediate: true,
+                // 当 isHot 发生改变时候产生调用
+                handler(newValue, oldValue) {
+                    console.log(newValue)
+                    console.log(oldValue)
+                }
+            },
+            'numbers.a': {
+                handler() {
+                    console.log("a 的值发生了变化")
+                }
+            },
+            numbers: {
+                // 不加这个默认监测的对象的地址变化，加这个会监视值的变化
+                deep: true,
+                handler() {
+                    console.log("深度监视这个对象属性的变化")
+                }
+            }
+
+        }
+
+    })
+    console.log(vm)
+
+
+</script>
+
+</body>
+</html>
