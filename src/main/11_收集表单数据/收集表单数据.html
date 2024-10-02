@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-model="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+    <style>
+        .basic {
+            padding: 5px;
+            background-color: red;
+        }
+
+        .normal {
+            padding: 10px;
+            background-color: burlywood;
+        }
+
+        .happy {
+            padding: 5px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <form @submit.prevent="demo">
+        <label for="account"> 账号:</label>
+        <input type="text" id="account" v-model:value="account">
+        <br/><br/>
+        <label for="password"> 密码:</label>
+        <input type="text" id="password" v-model:value="password">
+        <br/><br/>
+
+        <label for="age"> 年龄:</label>
+        <input type="number" id="age" v-model.number="age">
+        <br/><br/>
+        性别:
+        男<input type="radio" name="sex" v-model:value="sex" value="man">
+        女<input type="radio" name="sex" v-model:value="sex" value="women">
+        <br/><br/>
+        爱好:
+        学习<input type="checkbox" v-model:value="hobby" value='1'>
+        做爱<input type="checkbox" v-model:value="hobby" value='2'>
+        <br/><br/>
+        所属城市
+        <select v-model="city">
+            <option value="">请选择城市</option>
+            <option value="shenzhen">深圳</option>
+            <option value="guangzhou">广州</option>
+        </select>
+
+        <br/><br/>
+        其他信息
+        <textarea v-model.lazy="other">
+
+        </textarea>
+
+        <br/><br/>
+        <input type="checkbox" v-model="agree">阅读并接受<a href="https://www.baidu.com">用户协议用户协议</a> <br/><br/>
+
+        <button>提交</button>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#root',
+        data: {
+            account: '',
+            password: '',
+            age: '',
+            sex: '',
+            hobby: [],
+            city: 'shenzhen',
+            other: '',
+            agree: '',
+        },
+        methods: {
+            demo() {
+                console.log(this._data)
+                console.log(JSON.stringify(this._data))
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
