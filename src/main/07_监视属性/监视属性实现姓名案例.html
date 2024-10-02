@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" src="../../js/vue.min.js"></script>
 
 </head>
+
 <body>
 <div id="root">
-    姓: <input type="text" v-model:value="firstName"><br/>
-    名: <input type="text" v-model:value="lastName"><br/>
-    全名: <span>{{fullName}}</span><br/>
+    姓: <input type="text" v-model:value="firstName"><br />
+    名: <input type="text" v-model:value="lastName"><br />
+    全名: <span>{{fullName}}</span><br />
 
 </div>
 
@@ -22,14 +24,18 @@
             lastName: '三',
             fullName: '张-三'
         },
-        computed: {},
-        methods: {},
         watch: {
             firstName: {
-                handler(newValue) {
-                    this.fullName = newValue + '-' + this.lastName
+                // 普通函数的调用对象被vue 管理 this 是 vm ，而 箭头函数的指针对象是 windows
+                handler(newValue){
+                    console.log("监视属性执行了")
+                    setTimeout(() => {
+                        console.log(this)
+                        this.fullName = newValue + '-' + this.lastName
+                    }, 1000)
                 }
             }
+
         }
 
     })
@@ -39,4 +45,5 @@
 </script>
 
 </body>
+
 </html>
