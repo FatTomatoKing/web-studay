@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-model="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+    <style>
+        .basic {
+            padding: 5px;
+            background-color: red;
+        }
+
+        .normal {
+            padding: 10px;
+            background-color: burlywood;
+        }
+
+        .happy {
+            padding: 5px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <!--    <div class="basic normal" v-show="isShow">-->
+    <!--        {{name}}-->
+    <!--    </div>-->
+    <!--    <div class="basic normal" v-if="false">-->
+    <!--        {{name}} - tututut-->
+    <!--    </div>-->
+
+    <div class="basic normal" @click="number++">
+        {{number}}
+    </div>
+<!--    <div v-if="number===1">Angular</div>-->
+<!--    <div v-if="number===2">React</div>-->
+<!--    <div v-if="number===3">Vue</div>-->
+
+    <div v-if="number===1">Angular</div>
+    <div v-else-if="number===2">React</div>
+    <div v-else-if="number===3">Vue</div>
+
+</div>
+
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#root',
+        data: {
+            name: '张三',
+            mode: 'normal',
+            isShow: 'true',
+            number: 0
+        },
+        methods: {
+            changeMood() {
+                this.mode = 'happy'
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
