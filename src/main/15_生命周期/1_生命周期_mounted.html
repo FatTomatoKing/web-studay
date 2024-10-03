@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-model="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+    <script type="text/javascript" src="../../js/day.min.js"></script>
+
+    <style>
+        .basic {
+            padding: 5px;
+            background-color: red;
+        }
+
+        .normal {
+            padding: 10px;
+            background-color: burlywood;
+        }
+
+        .happy {
+            padding: 5px;
+            background-color: green;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="root">
+    <h2 :style="{opacity}">欢迎学Vue</h2>
+
+</div>
+
+<script type="text/javascript">
+
+
+    var vm = new Vue({
+        el: '#root',
+        data: {
+            opacity: 1
+        },
+        mounted() {
+            // Vue 完成模板的解析并把初始的真是Dom 元素放入页面后调用mounted
+            setInterval(() => {
+                this.opacity -= 0.01
+                if (this.opacity <= 0) this.opacity = 1
+            }, 16)
+        },
+        filters: {}
+    });
+
+
+</script>
+
+</body>
+</html>
