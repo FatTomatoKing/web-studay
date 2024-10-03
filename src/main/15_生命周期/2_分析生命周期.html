@@ -63,8 +63,14 @@
             // 所有对dom 的操作都是不奏效的
             console.log("beforeMount")
             console.log(this)
+        },
+        mounted(){
+            // 操作dom
+            console.log("mounted")
+            console.log(this)
             debugger;
-        }
+        },
+        // 初始化结束了
     });
 
 
