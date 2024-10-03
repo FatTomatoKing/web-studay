@@ -32,6 +32,7 @@
 <div id="root">
     <h2>{{num}}</h2>
     <button @click="add">点我</button>
+    <button @click="destroyVm">销毁</button>
 </div>
 
 <script type="text/javascript">
@@ -45,6 +46,9 @@
         methods: {
             add() {
                 this.num++
+            },
+            destroyVm(){
+                this.$destroy()
             }
         },
         beforeCreate() {
@@ -68,9 +72,28 @@
             // 操作dom
             console.log("mounted")
             console.log(this)
-            debugger;
         },
-        // 初始化结束了
+
+        // 数据的更新
+        // 初始化结束了 挂载流程
+        beforeUpdate(){
+            console.log("beforeUpdate")
+            console.log(this.num)
+
+        },
+        updated(){
+            console.log("beforeUpdate")
+            console.log(this.num)
+        },
+        beforeDestroy(){
+            console.log("beforeDestroy")
+            console.log(this.num)
+            this.add()
+            debugger
+        },
+        destroyed(){
+
+        }
     });
 
 
