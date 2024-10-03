@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-model="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/vue.min.js"></script>
+    <script type="text/javascript" src="../../js/day.min.js"></script>
+
+    <style>
+        .basic {
+            padding: 5px;
+            background-color: red;
+        }
+
+        .normal {
+            padding: 10px;
+            background-color: burlywood;
+        }
+
+        .happy {
+            padding: 5px;
+            background-color: green;
+        }
+
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="root">
+    <h2>{{num}}</h2>
+    <button @click="add">点我</button>
+</div>
+
+<script type="text/javascript">
+
+
+    var vm = new Vue({
+        el: '#root',
+        data: {
+            num: 1
+        },
+        methods: {
+            add() {
+                this.num++
+            }
+        },
+        beforeCreate() {
+            // 生命周期,事件 已经创建 数据属性和方法未进行填充
+            console.log("beforeCreate")
+            console.log(this)
+            /*debugger;*/
+        },
+        created(){
+            // methods 和 data 属性注入
+            console.log("created")
+            console.log(this)
+        },
+        beforeMount(){
+            // 页面呈现的是未经Vue 编译的dom 解雇
+            // 所有对dom 的操作都是不奏效的
+            console.log("beforeMount")
+            console.log(this)
+            debugger;
+        }
+    });
+
+
+</script>
+
+</body>
+</html>
